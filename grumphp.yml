@@ -1,0 +1,26 @@
+grumphp:
+    process_timeout: 120
+    stop_on_failure: false
+    ignore_unstaged_changes: false
+
+    tasks:
+        phpcsfixer:
+            config: .php-cs-fixer.dist.php
+            triggered_by: ['php']
+
+        phpstan:
+            configuration: phpstan.dist.neon
+            triggered_by: ['php']
+            memory_limit: "-1"
+
+        phpunit:
+            config_file: ~
+            testsuite: ~
+            always_execute: false
+
+    testsuites:
+        git_pre_commit:
+            tasks:
+                - phpcsfixer
+                - phpstan
+                - phpunit
