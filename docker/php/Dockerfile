@@ -33,6 +33,8 @@ RUN apk update && \
     set -e && \
     ln -s $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ENV PATH=~/.composer/vendor/bin:$PATH
 
 RUN docker-php-ext-enable mysqli pdo_mysql && \
     rm -rf /tmp/pear /var/cache/apk/*
