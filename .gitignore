@@ -28,3 +28,9 @@ phpstan.neon
 /.phpunit.cache/
 /bin/phpunit
 ###< phpunit/phpunit ###
+
+###> github ###
+.github/
+!.github/.gitignore
+!.github/workflows/
+###< github ###
