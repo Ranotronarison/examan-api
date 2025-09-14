@@ -19,6 +19,9 @@ enum ExamStatus: string
         };
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function getChoices(): array
     {
         return [

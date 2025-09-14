@@ -31,7 +31,7 @@ class Exam
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private $id;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Student name is required')]
