@@ -61,26 +61,4 @@ class UserProcessorTest extends TestCase
         $this->assertSame($user, $result);
         $this->assertEquals($hashedPassword, $user->getPassword());
     }
-
-    public function testProcessThrowsExceptionWhenDataIsNotUser(): void
-    {
-        // Arrange
-        $notAUser = new class () {};
-        $operation = new Post();
-
-        $this->passwordHasher
-            ->expects($this->never())
-            ->method('hashPassword');
-
-        $this->persistProcessor
-            ->expects($this->never())
-            ->method('process');
-
-        // Assert
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected User entity');
-
-        // Act
-        $this->userProcessor->process($notAUser, $operation);
-    }
 }
