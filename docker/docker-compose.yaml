@@ -1,0 +1,58 @@
+services:
+  examan-api:
+    build:
+      context: ..
+      dockerfile: ./docker/php/Dockerfile
+      target: php_dev
+    container_name: examan-api
+    environment:
+      - DATABASE_URL=mysql://app:password@examan-db:3306/examan-db?serverVersion=mariadb-12.0.0&charset=utf8mb4
+    depends_on:
+      examan-db:
+        condition: service_healthy
+    volumes:
+      - ..:/var/www/html
+    networks:
+      - examan-backend
+
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    container_name: examan-nginx
+    ports:
+      - "${API_PORT:-8080}:80"
+    depends_on:
+      - examan-api
+    volumes:
+      - ..:/var/www/html
+    networks:
+      - examan-backend
+
+  examan-db:
+    image: mariadb:12.0
+    container_name: examan-db
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: examan-db
+      MARIADB_USER: app
+      MARIADB_PASSWORD: password
+    ports:
+      - "${DB_PORT:-3307}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+      start_period: 30s
+    networks:
+      - examan-backend
+
+volumes:
+  db_data:
+
+networks:
+  examan-backend:
+    driver: bridge
