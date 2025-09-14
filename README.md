@@ -33,6 +33,11 @@ A Symfony API Platform application for exam management.
 - **Logs**: `docker-compose logs -f`
 - **Console**: `docker-compose exec examan-api php bin/console`
 
+## Testing
+
+- **Run all tests**: `docker-compose exec examan-api vendor/bin/phpunit`
+- **Run tests with detailed output**: `docker-compose exec examan-api vendor/bin/phpunit --testdox`
+
 ## Environment
 
 - API Port: 8080 (configurable via `API_PORT`)
