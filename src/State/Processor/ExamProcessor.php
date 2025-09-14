@@ -12,14 +12,11 @@ use App\Entity\Exam;
 class ExamProcessor implements ProcessorInterface
 {
     /**
-     * @var ProcessorInterface<Exam, Exam>
+     * @param ProcessorInterface<Exam, Exam> $persistProcessor
      */
-    private ProcessorInterface $persistProcessor;
-
     public function __construct(
-        ProcessorInterface $persistProcessor
+        private ProcessorInterface $persistProcessor
     ) {
-        $this->persistProcessor = $persistProcessor;
     }
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): ?Exam

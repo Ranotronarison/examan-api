@@ -13,11 +13,16 @@ use PHPUnit\Framework\TestCase;
 class ExamProcessorTest extends TestCase
 {
     private ExamProcessor $examProcessor;
-    private ProcessorInterface&MockObject $persistProcessor;
+    /**
+     * @var ProcessorInterface<Exam, Exam>&MockObject
+     */
+    private ProcessorInterface $persistProcessor;
 
     protected function setUp(): void
     {
-        $this->persistProcessor = $this->createMock(ProcessorInterface::class);
+        /** @var ProcessorInterface<Exam, Exam>&MockObject $persistProcessor */
+        $persistProcessor = $this->createMock(ProcessorInterface::class);
+        $this->persistProcessor = $persistProcessor;
         $this->examProcessor = new ExamProcessor($this->persistProcessor);
     }
 

@@ -43,6 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['user:read'])]
+    /** @phpstan-ignore property.onlyRead */
     private $id;
 
     #[ORM\Column(length: 180, unique: true)]

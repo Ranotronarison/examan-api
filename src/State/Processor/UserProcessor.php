@@ -13,17 +13,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserProcessor implements ProcessorInterface
 {
     /**
-     * @var ProcessorInterface<User, User>
+     * @param ProcessorInterface<User, User> $persistProcessor
      */
-    private ProcessorInterface $persistProcessor;
-    private UserPasswordHasherInterface $passwordHasher;
-
     public function __construct(
-        ProcessorInterface $persistProcessor,
-        UserPasswordHasherInterface $passwordHasher
+        private ProcessorInterface $persistProcessor,
+        private UserPasswordHasherInterface $passwordHasher
     ) {
-        $this->persistProcessor = $persistProcessor;
-        $this->passwordHasher = $passwordHasher;
     }
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): ?User

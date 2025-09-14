@@ -31,6 +31,7 @@ class Exam
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    /** @phpstan-ignore property.onlyRead */
     private $id;
 
     #[ORM\Column(length: 255)]
