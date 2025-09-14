@@ -31,8 +31,8 @@ class Exam
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    /** @phpstan-ignore property.onlyRead */
-    private $id;
+    /** @phpstan-ignore property.unusedType */
+    private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Student name is required')]
