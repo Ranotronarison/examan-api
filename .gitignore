@@ -34,3 +34,7 @@ phpstan.neon
 !.github/.gitignore
 !.github/workflows/
 ###< github ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

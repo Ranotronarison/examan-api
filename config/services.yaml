@@ -22,3 +22,7 @@ services:
     App\State\Processor\ExamProcessor:
         bind:
             $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
+
+    App\State\Processor\UserProcessor:
+        bind:
+            $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'

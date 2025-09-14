@@ -20,9 +20,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new Post(
             uriTemplate: '/exams',
-            processor: ExamProcessor::class
+            processor: ExamProcessor::class,
+            security: "is_granted('ROLE_USER')"
         ),
-        new GetCollection(),
+        new GetCollection(security: "is_granted('ROLE_USER')"),
     ]
 )]
 class Exam
