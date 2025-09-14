@@ -44,6 +44,15 @@ A Symfony API Platform application for exam management.
 - Database Port: 3307 (configurable via `DB_PORT`)
 - Database: MariaDB 12.0
 
+### Configuration
+
+Create `.env.dev.local` to override environment variables:
+
+```bash
+cp .env.dev .env.dev.local
+# Edit .env.dev.local with your local configuration
+```
+
 ## Troubleshooting
 
 - **Database connection issues**: Check if containers are running with `docker-compose ps`
