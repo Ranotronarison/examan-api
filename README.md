@@ -17,10 +17,15 @@ A Symfony API Platform application for exam management.
 
 2. **Setup database and JWT keys**
    ```bash
-   docker-compose exec examan-api php bin/console lexik:jwt:generate-keypair
+   docker-compose exec examan-api php bin/console lexik:jwt:generate-keypair --if-not-exists
    docker-compose exec examan-api php bin/console doctrine:migrations:migrate --no-interaction
    docker-compose exec examan-api php bin/console doctrine:fixtures:load --no-interaction
    ```
+
+   **Default User Account (after loading fixtures):**
+   - Email/Username: `admin@examan.com`
+   - Password: `password123`
+   - Role: `ROLE_ADMIN`
 
 3. **Access the API**
    - API Documentation: http://localhost:8080/api
