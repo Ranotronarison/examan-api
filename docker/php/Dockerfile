@@ -45,7 +45,6 @@ COPY --from=composer /var/www/html/vendor ./vendor
 COPY --from=composer /var/www/html/ .
 
 RUN adduser app -D && \
-    chown -R app:www-data public/ && \
     chmod -R 755 /var/www/html/public
 
 USER app
